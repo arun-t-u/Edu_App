@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+/* ── Global base ─────────────────────────────────────── */
+:root {
+  --font-inter: "Inter", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter);
+  background-color: hsl(220, 20%, 8%);
+  color: #f1f5f9;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar styling ──────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(220, 20%, 12%);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(262, 50%, 45%);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(262, 60%, 55%);
+}
+
+/* ── Focus ring ─────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid hsl(262, 75%, 60%);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Link defaults ──────────────────────────────────── */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Video player overrides ─────────────────────────── */
+.video-js {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0.5rem;
+  background: #000;
+}
+
+.vjs-big-play-button {
+  border-radius: 50% !important;
+  width: 64px !important;
+  height: 64px !important;
+  line-height: 64px !important;
+  left: 50% !important;
+  top: 50% !important;
+  margin-left: -32px !important;
+  margin-top: -32px !important;
+  background: hsl(262, 75%, 50%) !important;
+  border: none !important;
+  transition: transform 0.2s, background 0.2s !important;
+}
+
+.vjs-big-play-button:hover {
+  background: hsl(262, 75%, 40%) !important;
+  transform: scale(1.1) !important;
+}
+
+.vjs-control-bar {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9)) !important;
+  border-radius: 0 0 0.5rem 0.5rem !important;
+}
+
+/* ── Watermark overlay ──────────────────────────────── */
+.video-watermark {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 10;
+  opacity: 0.45;
+  font-size: 11px;
+  white-space: nowrap;
+  animation: watermark-drift 12s ease-in-out infinite;
+}
+
+@keyframes watermark-drift {
+  0%   { top: 10%; left: 5%; }
+  25%  { top: 15%; left: 80%; }
+  50%  { top: 70%; left: 75%; }
+  75%  { top: 75%; left: 8%; }
+  100% { top: 10%; left: 5%; }
+}
+
+/* ── Glassmorphism card ──────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+}
+
+/* ── Gradient text ────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(262, 80%, 70%), hsl(300, 70%, 65%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Progress bar ────────────────────────────────────── */
+.progress-bar {
+  height: 4px;
+  background: hsl(220, 20%, 25%);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, hsl(262, 75%, 55%), hsl(300, 60%, 60%));
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+/* ── Button utilities ──────────────────────────────── */
+@layer components {
+  .btn-primary {
+    @apply bg-brand-500 hover:bg-brand-600 text-white font-semibold px-6 py-2.5 rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-brand-500/25 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-surface-elevated hover:bg-surface-border text-white font-medium px-6 py-2.5 rounded-lg border border-surface-border transition-all duration-200;
+  }
+
+  .btn-ghost {
+    @apply text-slate-400 hover:text-white hover:bg-surface-elevated px-4 py-2 rounded-lg transition-all duration-200;
+  }
+
+  .input-field {
+    @apply w-full bg-surface-elevated border border-surface-border rounded-lg px-4 py-2.5 text-white placeholder-slate-500 focus:border-brand-400 focus:ring-1 focus:ring-brand-400 transition-colors outline-none;
+  }
+
+  .card {
+    @apply glass-card p-6 transition-transform duration-200 hover:-translate-y-0.5;
+  }
+}
