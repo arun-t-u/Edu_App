@@ -1,6 +1,5 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     images: {
         remotePatterns: [
             {
@@ -12,13 +11,6 @@ const nextConfig: NextConfig = {
                 hostname: "pub-*.r2.dev",
             },
         ],
-    },
-    // Ensure large video uploads work (API body size)
-    api: {
-        bodyParser: {
-            sizeLimit: "500mb",
-        },
-        responseLimit: false,
     },
 };
 
